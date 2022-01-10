@@ -7,8 +7,12 @@ $common-color: hsla(0, 17%, 87%, 0.801);
 $hover-color-movie: hsla(61, 84%, 42%, 0.945);
 $hover-color-book: hsla(180, 78%, 26%, 0.863);
 
+*{
+  box-sizing: border-box;
+}
 
 html{
+  height: 100vh;
   ::-webkit-scrollbar {
     width: 0.8rem;
   }
@@ -31,16 +35,16 @@ html{
 body{
   background: url("../assets/janko-ferlic-sfL_QOnmy00-unsplash\ \(1\).jpg") no-repeat fixed center;
   background-color: rgb(29, 29, 29);
+  box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.8);
+  margin: 0;
+  height: 100vh;
+  /* border-radius: 0.8rem; */
   font-family: $font-stack;
   h1{
     color: hsl(0, 59%, 38%);
   }
   .App{
-    box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.8);
-    min-height: 100vh;
     padding: 2rem;
-    margin: 0 5rem;
-    border-radius: 0.8rem;
     .go-back-button{
       height: 50px;
       width: 50px;
@@ -65,7 +69,7 @@ body{
       display: flex;
       justify-content: center;
       color: $common-color;
-      margin: 5rem;
+      padding: 4rem;
     }
     .button-category{
       display: flex;
@@ -108,7 +112,8 @@ body{
         height: 15px;
         width: 15px;
       }
-      button{
+      .direction-buttons{
+        text-decoration: none;
         padding: 5px;
         background: none;
         border: none;
@@ -117,7 +122,7 @@ body{
         font-size: large;
         color: $common-color;
       }
-      button:hover{
+      .direction-buttons:hover{
         color: rgb(117, 117, 117);
       }
     }

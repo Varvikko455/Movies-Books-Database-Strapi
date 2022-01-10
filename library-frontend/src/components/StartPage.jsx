@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import '../scss/startpage.scss';
-/* import { useTransition } from "react-transition-state"; */
+import { Link } from 'react-router-dom';
 
 import CategoryButtons from './CategoryButtons';
+
+import '../scss/startpage.scss';
 
 function StartPage() {
  
@@ -14,31 +15,19 @@ function StartPage() {
   const [books, setBooks] = useState([]);
 
 
-  const [toggleMovie, setToggleMovie] = useState(false)
-  const [toggleBook, setToggleBook] = useState(false)
+  const [toggleMovie, setToggleMovie] = useState(true);
+  const [toggleBook, setToggleBook] = useState(true);
   
   const toggleMoviesAndBooks = async () => {
     setToggleMovie(!toggleMovie);
     setToggleBook(!toggleBook);
-  }
+  };
 
-  /* const [stateMovie, toggle] = useTransition({
-    timeout: 1000,
-    mountOnEnter: true,
-    unmountOnExit: true,
-    preEnter: true,
-    preExit: true
-  });
-  const movie =  () => {
-    setToggleMovie(!toggleMovie)
-    toggle()
-  }
-  const showMovie = stateMovie === "unmounted"; */
   
   useEffect(() => {
     fetch(MoviesUrl).then(response => response.json()).then(data => setMovies(data.data))
     fetch(BooksUrl).then(response => response.json()).then(data => setBooks(data.data))
-  }, [])
+  }, []);
 
   
 
@@ -46,25 +35,26 @@ function StartPage() {
     <>
       <div className="App">
         <h1 className="head-title">Movie & Book Database</h1>
-        <div className="button-category">
-          <CategoryButtons />
-        </div>
+        <CategoryButtons />
+        
         <div className="button-header">
           <span>
             <div className={`circle ${toggleMovie ? 'green' : 'red'}`}></div>
-            <button onClick={() => setToggleMovie(!toggleMovie)}>Show/Hide Movies</button>
+            <Link className="direction-buttons" to={`/movies`}>Go to Movies</Link>
+            {/* <button onClick={() => setToggleMovie(!toggleMovie)}>Show/Hide Movies</button> */}
           </span>
 
-          <button onClick={() => toggleMoviesAndBooks()}>Show/Hide Movies & Books</button>
+          <button className="direction-buttons" onClick={() => toggleMoviesAndBooks()}>Show/Hide Movies & Books</button>
 
           <span>
-            <button onClick={() => setToggleBook(!toggleBook)}>Show/Hide Books</button>
+            <Link className="direction-buttons" to={`/books`}>Go to Books</Link>
+            {/* <button onClick={() => setToggleBook(!toggleBook)}>Show/Hide Books</button> */}
             <div className={`circle ${toggleBook ? 'green' : 'red'}`}></div>
           </span>
         </div>
 
         {toggleMovie && <h1 className="title">Movies</h1>}
-        {toggleMovie &&
+        {toggleMovie && 
         <div className={`template`}>  
             {movies.map(({ attributes }) => {
               let {title, realeaseDate, time, grade, cover, id} = attributes;

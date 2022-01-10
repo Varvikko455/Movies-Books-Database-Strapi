@@ -12,12 +12,14 @@ export default function CategoryButtons() {
 
   return(
     <>
-      {categories.map(({ attributes, id }) => {
-        let { label } = attributes;
-        return (
-          <Link key={id} to={`/categories/${id}`}>{ label }</Link> 
-        )
-      })}
+      <div className="button-category">
+        {categories.map(({ attributes, id }) => {
+          let { label } = attributes;
+          return (
+            <Link key={id} to={`/categories/${id}`}>{ label }</Link> 
+          )
+        })}
+      </div>
     </>
   )
 }
